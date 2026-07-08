@@ -19,7 +19,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         [HttpGet]
         public IActionResult ContactList()
         {
-            var values = _context.Conctacts.ToList();
+            var values = _context.Contacts.ToList();
             return Ok(values);
         }
 
@@ -32,15 +32,15 @@ namespace ApiProjeKampi.WebApi.Controllers
             contact.Phone = createContactDto.Phone;
             contact.MapLocation = createContactDto.MapLocation;
             contact.OpenHours = createContactDto.OpenHours;
-            _context.Conctacts.Add(contact);
+            _context.Contacts.Add(contact);
             _context.SaveChanges();
             return Ok("Ekleme işlemi başarılı");
         }
         [HttpDelete]
         public IActionResult DeleteContact(int id)
         {
-            var value = _context.Conctacts.Find(id);
-            _context.Conctacts.Remove(value);
+            var value = _context.Contacts.Find(id);
+            _context.Contacts.Remove(value);
             _context.SaveChanges();
             return Ok("Silme işlemi başarılı");
         }
@@ -48,7 +48,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         [HttpGet("GetContact")]
         public IActionResult GetContact(int id)
         {
-            var value = _context.Conctacts.Find(id);
+            var value = _context.Contacts.Find(id);
             return Ok(value);
         }
         [HttpPut]
@@ -61,7 +61,7 @@ namespace ApiProjeKampi.WebApi.Controllers
             contact.ContactId = updateContactDto.ContactId;
             contact.MapLocation = updateContactDto.MapLocation;
             contact.OpenHours = updateContactDto.OpenHours;
-            _context.Conctacts.Update(contact);
+            _context.Contacts.Update(contact);
             _context.SaveChanges();
             return Ok("Güncelleme işlemi başarılı");
         }
