@@ -2,7 +2,7 @@
 
 namespace ApiProjeKampi.WebUl.ViewComponents
 {
-    public class _HeadDafaultComponentPartial:ViewComponent
+    public class _HeadDefaultComponentPartial:ViewComponent
     {
         public IViewComponentResult Invoke()
         {
