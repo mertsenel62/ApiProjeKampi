@@ -1,0 +1,50 @@
+﻿[
+  {
+    "nameSurname": "Ahmet Yılmaz",
+    "title": "Yazılım Mühendisi",
+    "comment": "Lezzet konusunda beklentimin çok üzerindeydi. Özellikle et yemekleri ve tatlılar harikaydı. Servis ekibi oldukça güler yüzlü ve hızlıydı. Kesinlikle tekrar geleceğim.",
+    "imageUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+  },
+  {
+    "nameSurname": "Zeynep Kaya",
+    "title": "Grafik Tasarımcı",
+    "comment": "Restoranın atmosferi çok sıcak ve samimiydi. Siparişlerimiz kısa sürede geldi ve tüm yemekler taptazeydi. Arkadaşlarıma gönül rahatlığıyla tavsiye ediyorum.",
+    "imageUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+  },
+  {
+    "nameSurname": "Mehmet Demir",
+    "title": "Mimar",
+    "comment": "Sunumlar oldukça şık, porsiyonlar doyurucu ve fiyatlar da makul. Özellikle ızgara çeşitlerini denemenizi öneririm.",
+    "imageUrl": "https://randomuser.me/api/portraits/men/3.jpg"
+  },
+  {
+    "nameSurname": "Elif Şahin",
+    "title": "İç Mimar",
+    "comment": "Hem ailemizle hem de arkadaşlarımızla keyifle vakit geçirebildiğimiz bir mekan oldu. Çalışanların ilgisi ve hijyen gerçekten takdire değer.",
+    "imageUrl": "https://randomuser.me/api/portraits/women/4.jpg"
+  },
+  {
+    "nameSurname": "Burak Çetin",
+    "title": "Finans Uzmanı",
+    "comment": "Uzun zamandır bu kadar kaliteli hizmet aldığım bir restoran olmamıştı. Yemeklerin lezzeti kadar çalışanların ilgisi de çok başarılıydı.",
+    "imageUrl": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "nameSurname": "Ayşe Aydın",
+    "title": "Öğretmen",
+    "comment": "Tatlıları gerçekten efsane. Özellikle cheesecake ve sıcak çikolatalı sufleyi denemelisiniz. Çok memnun kaldık.",
+    "imageUrl": "https://randomuser.me/api/portraits/women/6.jpg"
+  },
+  {
+    "nameSurname": "Can Karaca",
+    "title": "Dijital Pazarlama Uzmanı",
+    "comment": "Rezervasyon sürecinden hesabı ödeyene kadar her şey profesyonelce yönetildi. Kaliteli hizmet anlayışını her detayda hissediyorsunuz.",
+    "imageUrl": "https://randomuser.me/api/portraits/men/7.jpg"
+  },
+  {
+    "nameSurname": "Selin Arslan",
+    "title": "Doktor",
+    "comment": "Malzemelerin tazeliği ilk lokmadan belli oluyor. Menü oldukça zengin ve her damak tadına uygun seçenekler sunuyor.",
+    "imageUrl": "https://randomuser.me/api/portraits/women/8.jpg"
+  }
+]
