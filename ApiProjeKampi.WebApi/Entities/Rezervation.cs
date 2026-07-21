@@ -11,6 +11,6 @@
         public int CountofPeople { get; set; }
         public string ReservationStatus { get; set; }
         public string Message { get; set; }
-
+        
     }
 }
