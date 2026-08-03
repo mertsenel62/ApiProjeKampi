@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using static ApiProjeKampi.WebUl.Controllers.AIController;
 
 namespace ApiProjeKampi.WebUl.Controllers
@@ -140,10 +141,49 @@ namespace ApiProjeKampi.WebUl.Controllers
         [HttpPost]
         public async Task<IActionResult> SendMessage(CreateMessageDto createMessageDto)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = new HttpClient();
+            var apikey = _configuration["OpenAI:ApiKey"];
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apikey);
+
+            try
+            {
+                var moderationRequestBody = new
+                {
+                    input = createMessageDto.MessageDetails
+                };
+                var moderationJson = System.Text.Json.JsonSerializer.Serialize(moderationRequestBody);
+                var moderationContent = new StringContent(moderationJson, Encoding.UTF8, "application/json");
+
+                var moderationResponse = await client.PostAsync("https://api.openai.com/v1/moderations", moderationContent);
+                var moderationResponseString = await moderationResponse.Content.ReadAsStringAsync();
+
+                if (moderationResponse.IsSuccessStatusCode)
+                {
+                    var moderationDoc = JsonDocument.Parse(moderationResponseString);
+                    var result = moderationDoc.RootElement.GetProperty("results")[0];
+                    bool flagged = result.GetProperty("flagged").GetBoolean();
+
+                    if (flagged)
+                    {
+                        createMessageDto.Status = "Toksik Mesaj";
+                    }
+                }
+
+                if (string.IsNullOrEmpty(createMessageDto.Status))
+                {
+                    createMessageDto.Status = "Mesaj Alındı";
+                }
+            }
+            catch (Exception ex)
+            {
+                createMessageDto.Status = "Onay Bekliyor";
+            }
+
+            var client2 = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createMessageDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7003/api/Messages", stringContent);
+            var responseMessage = await client2.PostAsync("https://localhost:7003/api/Messages", stringContent);
+
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("MessageList");
