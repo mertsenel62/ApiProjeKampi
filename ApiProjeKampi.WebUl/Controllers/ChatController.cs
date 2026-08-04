@@ -1,0 +1,12 @@
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace ApiProjeKampi.WebUl.Controllers
+{
+    public class ChatController : Controller
+    {
+        public IActionResult SendChatWithAI()
+        {
+            return View();
+        }
+    }
+}
