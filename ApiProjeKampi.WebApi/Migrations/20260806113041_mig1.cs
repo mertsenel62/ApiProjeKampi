@@ -10,6 +10,24 @@ namespace ApiProjeKampi.WebApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Abouts",
+                columns: table => new
+                {
+                    AboutId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VideoCoverImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReservationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Abouts", x => x.AboutId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -39,7 +57,7 @@ namespace ApiProjeKampi.WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Conctacts",
+                name: "Contacts",
                 columns: table => new
                 {
                     ContactId = table.Column<int>(type: "int", nullable: false)
@@ -52,7 +70,25 @@ namespace ApiProjeKampi.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Conctacts", x => x.ContactId);
+                    table.PrimaryKey("PK_Contacts", x => x.ContactId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeTasks",
+                columns: table => new
+                {
+                    EmployeeTaskId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TaskName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaskStatusValue = table.Column<byte>(type: "tinyint", nullable: false),
+                    AssignDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Priority = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaskStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeTasks", x => x.EmployeeTaskId);
                 });
 
             migrationBuilder.CreateTable(
@@ -97,7 +133,8 @@ namespace ApiProjeKampi.WebApi.Migrations
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MessageDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SendDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsRead = table.Column<bool>(type: "bit", nullable: false)
+                    IsRead = table.Column<bool>(type: "bit", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,26 +142,26 @@ namespace ApiProjeKampi.WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Notifications",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    NotificationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IconUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NotificationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.PrimaryKey("PK_Notifications", x => x.NotificationId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rezerations",
+                name: "Reservations",
                 columns: table => new
                 {
-                    RezervationId = table.Column<int>(type: "int", nullable: false)
+                    ReservationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameSurname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -137,7 +174,7 @@ namespace ApiProjeKampi.WebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rezerations", x => x.RezervationId);
+                    table.PrimaryKey("PK_Reservations", x => x.ReservationId);
                 });
 
             migrationBuilder.CreateTable(
@@ -170,18 +207,98 @@ namespace ApiProjeKampi.WebApi.Migrations
                 {
                     table.PrimaryKey("PK_Testimonials", x => x.TestimonialId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "YummyEvents",
+                columns: table => new
+                {
+                    YummyEventId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_YummyEvents", x => x.YummyEventId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeTasksChef",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeTaskId = table.Column<int>(type: "int", nullable: false),
+                    ChefId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeTasksChef", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmployeeTasksChef_Chefs_ChefId",
+                        column: x => x.ChefId,
+                        principalTable: "Chefs",
+                        principalColumn: "ChefId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeTasksChef_EmployeeTasks_EmployeeTaskId",
+                        column: x => x.EmployeeTaskId,
+                        principalTable: "EmployeeTasks",
+                        principalColumn: "EmployeeTaskId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeTasksChef_ChefId",
+                table: "EmployeeTasksChef",
+                column: "ChefId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeTasksChef_EmployeeTaskId",
+                table: "EmployeeTasksChef",
+                column: "EmployeeTaskId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Abouts");
 
             migrationBuilder.DropTable(
-                name: "Chefs");
+                name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "Conctacts");
+                name: "EmployeeTasksChef");
 
             migrationBuilder.DropTable(
                 name: "Features");
@@ -193,16 +310,31 @@ namespace ApiProjeKampi.WebApi.Migrations
                 name: "Messages");
 
             migrationBuilder.DropTable(
+                name: "Notifications");
+
+            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Rezerations");
+                name: "Reservations");
 
             migrationBuilder.DropTable(
                 name: "Services");
 
             migrationBuilder.DropTable(
                 name: "Testimonials");
+
+            migrationBuilder.DropTable(
+                name: "YummyEvents");
+
+            migrationBuilder.DropTable(
+                name: "Chefs");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeTasks");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }
